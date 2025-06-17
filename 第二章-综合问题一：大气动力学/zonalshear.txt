@@ -1,0 +1,63 @@
+library(ggplot2)
+
+# const
+Omega <- 7.292115e-5  
+a <- 6371000       
+H <- 12000             
+
+# box
+df <- data.frame(
+  lat_deg = seq(-89.9, 89.9, by = 0.1),  
+  shear = numeric(1799)
+)
+
+# VWS
+for (i in 1:nrow(df)) {
+  phi <- df$lat_deg[i] * pi/180  # rad
+  df$shear[i] <- (Omega * a * sin(phi)^2) / (H * cos(phi))
+}
+
+# ggplot
+p <- ggplot(df, aes(x = lat_deg, y = shear)) +
+  geom_line(color = "darkred", linewidth = 1) +
+  labs(
+    title = expression(paste("Vertical Wind Shear Distribution: ", frac(partialdiff*u, partialdiff*z) == frac(Omega~a~sin^2*phi, H~cos*phi))),
+    x = "Latitude (°)",
+    y = expression(paste("Vertical Wind Shear (s"^{-1},")"))
+  ) +
+  scale_x_continuous(
+    breaks = seq(-45, 45, 10),
+    limits = c(-45, 45),
+    expand = c(0, 0)
+  ) +
+  scale_y_continuous(
+    breaks = seq(0, 0.04, 0.01),
+    limits = c(0, 0.04),
+    expand = c(0, 0),
+    labels = scales::number_format(accuracy = 0.01)
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    axis.title = element_text(size = 12),
+    axis.title.y = element_text(margin = margin(r = 10)),
+    axis.text = element_text(size = 10, color = "black"),
+    axis.text.x.minor = element_blank(),
+    panel.grid.major = element_line(color = "#E6E6E6", size = 0.3),
+    panel.grid.minor = element_line(color = "#F0F0F0", size = 0.2),
+    panel.background = element_rect(fill = "white", color = "black", size = 1.2),
+    plot.background = element_rect(fill = "white", color = NA),
+    axis.line = element_line(color = "black", size = 0.5),
+    axis.ticks = element_line(color = "black"),
+    axis.ticks.length = unit(0.2, "cm")
+  ) +
+  # key notes
+  geom_vline(xintercept = 0, linetype = "dashed", color = "darkblue", alpha = 0.7) +
+  geom_vline(xintercept = c(-30, 30), linetype = "dotted", color = "darkgreen", alpha = 0.5) +
+  annotate("text", x = 2, y = 0.19, label = "Equator", color = "darkblue", hjust = 0) +
+  annotate("text", x = 32, y = 0.19, label = "30°", color = "darkgreen", hjust = 0) +
+  annotate("text", x = -28, y = 0.19, label = "-30°", color = "darkgreen", hjust = 0)
+
+print(p)
+
+ggsave("zonalshear.pdf", plot = p, device = cairo_pdf, 
+       width = 8, height = 6, units = "in", dpi = 300)
