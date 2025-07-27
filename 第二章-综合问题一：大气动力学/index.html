@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lantxmu.github.io/img/nasaatmo.png">
 <meta property="article:published_time" content="2025-06-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-06-18T08:00:15.196Z">
+<meta property="article:modified_time" content="2025-07-11T00:20:38.188Z">
 <meta property="article:author" content="Lant">
 <meta property="article:tag" content="CESO">
 <meta name="twitter:card" content="summary_large_image">
@@ -215,7 +215,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k 字
+          10k 字
         
       </span>
     
@@ -271,7 +271,7 @@
                 <p>$$<br>\begin{equation*}<br>Lant<br>\end{equation*}<br>$$</p>
 <p>$$<br>\begin{equation*}<br>\text{Xiamen University}<br>\end{equation*}<br>$$</p>
 <hr>
-<p><strong>摘要</strong>：本章提供了对2024-2025学年全国中学生地球科学竞赛决赛试题大气动力学题组（W4-W9，共45分）的讨论。本章聚焦于大尺度大气动力学中，哈德利环流的生消变化及物理机制，并结合部分类地行星的大气进行了比较行星学的实证分析。同时给出了原试题的参考答案及题目来源。</p>
+<p><strong>摘要</strong>：本章提供了对2024-2025学年全国中学生地球科学竞赛决赛试题大气动力学题组（W4-W9，共45分）的讨论。本章聚焦于大尺度大气动力学中，哈德利环流的生消变化及物理机制，并结合部分类地行星的大气进行了比较行星学的实证分析。同时给出了原试题的题目来源。</p>
 <p><strong>关键词</strong>：CESO、Held-Hou模型、大气动力学、哈德利环流、比较行星学</p>
 <hr>
 <blockquote>
@@ -443,104 +443,6 @@
 <blockquote>
 <p> <strong>图 2.10</strong> 利用惠更斯号探测器收集的数据进行的GCM建模，实线是平均哈德利环流的质量流函数（单位：$10^{-8} \enspace\text{kg &#x2F;s}$）。可以观察到，单一环流圈从南极一直延伸至北极。流线显示在几乎所有纬度2公里高度以下都存在向南流动，这代表了哈德利环流的下分支。整个南半球都出现上升运动，而北半球则出现下沉运动。（Tokano, 2007）</p>
 </blockquote>
-<h2 id="原题回放"><a href="#原题回放" class="headerlink" title="原题回放"></a>原题回放</h2><p>地球上的风，本质上就是大气的运动。哈德利环流（Hadley Cell）是一种目前认为普遍存在于宜居星球上的全球尺度大气环流。地球上的哈德利环流指的是大气从赤道附近上升，在中纬度附近区域下沉形成的环流。显然，这个环流的形成意味着，赤道附近上升的气团需要在某个特定高度处停止上升，变成具有向两极运动的分速度的平行地面的运动；同时在某一个纬度处停止向两极运动，并开始下沉。</p>
-<p>上升大气停止上升的高度即为地球大气圈层结构中的对流层顶部的高度。大气现象通常发生在对流层高度范围之内，很难传播到平流层。此外，通常认为流体静力学平衡在对流层范围内适用。而其停止向两极运动，开始下沉的纬度，即为哈德利环流的范围&#x2F;尺度。不同的行星具有不同尺度的哈德利环流，火星上的哈德利环流可以影响到纬度60度的位置，而地球哈德利环流的边界往往在25度附近的中纬度区域。</p>
-<p>事实上，只需要一些简单的行星参数，就可以通过简化的物理模型估算出某个行星的哈德利环流的尺度，下面让我们一步一步的来实现这个过程！</p>
-<p>在估算过程中，仅考虑地球以角速度 $\Omega$ 绕地轴自转（忽略其他一切地球的运动；包括地球的公转、地轴的倾斜与地轴的运动等等）且地球为球体；忽略地球大气自身粘性造成的粘性耗散，仅仅考虑大气与地面之间的摩擦，也忽略对流层大气在对流层顶与平流层大气的能量交换（即除与地面接触摩擦以外不存在任何能量损失）；同时也忽略水的相变，将哈德利环流简化为一个单纯的运动学问题（如题图16所示）。</p>
-<p><img src="/./%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%A4%A7%E6%B0%94%E5%8A%A8%E5%8A%9B%E5%AD%A6/fig_Q16.jpg" srcset="/img/loading.gif" lazyload alt="fig_Q16"></p>
-<blockquote>
-<p><strong>题图16</strong> 哈德利环流</p>
-</blockquote>
-<p>这样，哈德利环流就可以抽象为流体沿着两个关于赤道对称的近矩形路径进行循环流动（如题图17所示）。由于哈德利环流关于赤道轴对称，因此我们只考虑北半球的情况。</p>
-<p><img src="/./%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%A4%A7%E6%B0%94%E5%8A%A8%E5%8A%9B%E5%AD%A6/fig_Q17.jpg" srcset="/img/loading.gif" lazyload alt="fig_Q17"></p>
-<blockquote>
-<p><strong>题图17</strong> 哈德利环流的机制示意图（1）</p>
-</blockquote>
-<p>通常使用“风速”来描述大气相对地面的运动情况。某个特定位置的风速，可以视为这个位置处一个小的大气团块的运动速度（如题图18所示）。地球风速通常被进行三向分解，分解为垂直于地球表面方向的垂向速度 $w$（垂直地面向上为正方向），沿经线方向的径向速度 $v$（向北为正方向），和沿纬线方向的纬向速度 $u$（向东为正方向）。其中值得注意的是，地球自身在公转，<strong>纬向风速是相对于自转的地球（即相对于最近的地面）的速度。</strong></p>
-<p><img src="/./%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%A4%A7%E6%B0%94%E5%8A%A8%E5%8A%9B%E5%AD%A6/fig_Q18.jpg" srcset="/img/loading.gif" lazyload alt="fig_Q18"></p>
-<blockquote>
-<p><strong>题图18</strong> 哈德利环流的单位气团</p>
-</blockquote>
-<p>设地球自转角速度为 $\Omega$，地球半径为 $a$，对流层高度为 $H$（从地面到对流层顶的高度），相对地球半径而言对流层高度可以忽略不计。首先考虑气团在对流层顶运动的阶段（如题图19所示的CD段，气团不受摩擦力，可以忽略一切外力的作用）。此阶段气团从赤道向更高纬度的地区运动，垂向速度 $w$ 始终为0。赤道处的纬向速度 $u_c$ 为0。</p>
-<p><img src="/./%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%A4%A7%E6%B0%94%E5%8A%A8%E5%8A%9B%E5%AD%A6/fig_Q19.jpg" srcset="/img/loading.gif" lazyload alt="fig_Q19"></p>
-<blockquote>
-<p><strong>题图19</strong> 哈德利环流的机制示意图（2）</p>
-</blockquote>
-<p><strong>W4.</strong> 请求出气团向两极远移到任意纬度 $\phi$ 处，其纬向速度 $u(\phi)$ 的表达式。若地球自转角速度 $\Omega &#x3D; 7.3 \times 10^{-5}$ 弧度&#x2F;s，地球半径 $a &#x3D; 6371.4 , \text{km}$，请求出纬度 $20^\circ$ 与 $30^\circ$ 位置处的纬向速度（计算结果保留两位小数）（8分）</p>
-<blockquote>
-<p><strong>补充知识</strong></p>
-<p>在没有外力作用时，绕某个轴旋转的原点，其质量、线速度、到其自转轴的距离这三者的乘积始终不变。</p>
-</blockquote>
-<p><strong>解:</strong><br>$$<br>v&#x3D;\Omega a\cos\phi+u<br>$$</p>
-<p>$$<br>L&#x3D;vr&#x3D;va\cos\phi<br>$$</p>
-<p>$$<br>\implies L&#x3D;(\Omega a \cos \phi+u)\cdot a \cos \phi &#x3D;const… \text{(2分)}<br>$$</p>
-<p>带入赤道（$u&#x3D;0$）数据，由角动量守恒得：<br>$$<br>L&#x3D;L_0&#x3D;\Omega a \cdot a&#x3D;\Omega a^2<br>$$</p>
-<p>$$<br>\Omega a^2&#x3D;\Omega a^2 \cos ^2 \phi +ua \cos \phi<br>$$</p>
-<p>$$<br>u(\phi)&#x3D;\frac{\Omega a^2  -\Omega a^2 \cos ^2 \phi}{a \cos \phi}<br>&#x3D; \frac{\Omega a  -\Omega a \cos ^2 \phi}{\cos \phi}<br>&#x3D;\boxed{\frac{\Omega a\sin^2\phi}{\cos \phi}}… \text{(6分)}<br>$$</p>
-<p>$$<br>u(20^\circ)\approx57 \mathrm{m&#x2F;s};\quad u(30^\circ)\approx 134 \mathrm{m&#x2F;s}… \text{(8分)}<br>$$</p>
-<hr>
-<p>通过上述的计算，我们成功知道了哈德利环流上边界任意一点的纬向速度。而在下边界，由于存在大气与地表的摩擦，通常认为下边界任意纬度处的纬向风速 $u$ 均为0m&#x2F;s，可见从地面到对流层顶的风速发生了明显改变。假设纬向风速沿高度线性均匀变化，即在任意纬度处纬向风速从高度 $h &#x3D; 0$，到高度 $h &#x3D; H$（$H$ 为对流层顶的高度）都线性递增。将相同纬度，上升单位高度伴随的纬向风速变化量定义为“纬向风速的垂向切变”，记为 $\tau$。</p>
-<p><strong>W5.</strong> 请求出任意纬度 $\phi$ 处纬向风速的垂向切变 $\tau(\phi)$。若地球自转角速度 $\Omega &#x3D; 7.3 \times 10^{-5}$ 弧度&#x2F;s，地球半径 $a &#x3D; 6371.4 , \text{km}$，对流层厚度 $H &#x3D; 12 , \text{km}$，请求出纬度 $20^\circ$ 与 $30^\circ$ 位置处的 $\tau$（计算结果用科学计数法表示，保留两位小数）。(4分)</p>
-<p><strong>解:</strong><br>$$<br>\tau(\phi)&#x3D;\frac{u(\phi)}{H}&#x3D;\frac{\Omega a \sin^2\phi}{H\cos \phi}… \text{(2分)}<br>$$</p>
-<p>$$<br>\tau(20^\circ)\approx4.83\times 10^{-3}\mathrm{s^{-1}};\quad \tau(30^\circ)\approx1.12\times 10^{-2}\mathrm{s^{-1}}… \text{(4分)}<br>$$</p>
-<hr>
-<p>经过前两题的计算，不难发现纬向风速的垂向切变 $\tau$ 从赤道向更高纬度方向迅速增大。随着纬向风速的垂向切变的增加，大气中气块的抗扰动能力会下降（即当气块受到扰动离开原位后，由于其他位置的运动状态与原位置差异过大，会导致进一步偏离原位而难以回到原位）。大气中这种气块的抗扰动力的下降的过程被描述为：大气“垂直不稳定性”增加。哈德利环流存在纬度边界的原因，在本质上正是：大气的垂直不稳定性随着纬度的增加而增加，在某个纬度处，大气不稳定性达到了大气保持静力稳定平衡的极限，一旦超过这个纬度，大气就将处于极度的不稳定状态。于是哈德利环流在这个纬度处终止，而在哈德利环流纬度边界之外，存在动力不稳定性较高的西风急流。</p>
-<p>我们此前已经计算出了纬向风速的垂向切变 $\tau$ 随纬度的变化函数，而这个变化，本质上是温度沿纬度分布不均匀导致的。垂向风切变与水平温度梯度成正比，这个关系称作“热成风关系”，表达式为：</p>
-<p>$$<br>\tau &#x3D; \frac{\Delta u}{\Delta h} &#x3D; \frac{g}{2\Omega \sin\phi \cdot T_0} \frac{\Delta T_M}{\Delta y}<br>$$</p>
-<p>其中 $\tau$ 为垂向风切变，$\Omega$ 为地球自转的角速度，$g$ 为重力加速度，$\phi$ 为纬度角，$T_0$ 为全球平均辐射平衡温度（太阳辐射下处于能量平衡状态下的地球整体的空间平均温度，与赤道温度不同）。由于我们仅仅考虑沿经线方向纬度增加（即远离赤道）导致的垂向风切变，所以这里即为沿经线方向远离赤道的距离（赤道处 $y &#x3D; 0$），$T_M$ 为地球表面的温度（是关于 $y$ 的函数），$\frac{\Delta T_M}{\Delta y}$ 是地球表面沿经线方向远离赤道的温度水平梯度（见题图20）。</p>
-<p><img src="/./%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%A4%A7%E6%B0%94%E5%8A%A8%E5%8A%9B%E5%AD%A6/fig_Q20.jpg" srcset="/img/loading.gif" lazyload alt="fig_Q20"></p>
-<blockquote>
-<p><strong>题图20</strong> 热成风</p>
-</blockquote>
-<p>由于地球上哈德利环流的影响范围不大，可视为处于纬度角 $\phi$ 较小的情况。为简化计算，我们可以将某一纬度角 $\phi$ 对应的经线 $y$ 和两条地球半径 $a$ 视为等腰三角形。当顶角 $\phi$ 较小时，$\sin \phi$ 可以近似等于 $\frac{y}{a}$，而 $\cos \phi$ 可以近似等于1（题图21）。(后续计算均使用此近似)</p>
-<p><img src="/./%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%A4%A7%E6%B0%94%E5%8A%A8%E5%8A%9B%E5%AD%A6/fig_Q21.jpg" srcset="/img/loading.gif" lazyload alt="fig_Q21"></p>
-<blockquote>
-<p><strong>题图21</strong> 哈德利环流的小角近似</p>
-</blockquote>
-<p><strong>W6</strong>. 请根据此前求得的垂向风切变，结合热成风关系，求出我们简化的哈德利环流模型之下地球表面温度 $T_M$ 随沿经线方向远离赤道的距离 $y$ 的变化函数，并说明 $T_M$ 关于 $y$ 的函数表达式中常数项的意义。（10分）</p>
-<blockquote>
-<p><strong>补充知识</strong></p>
-<p>不定积分是求导的逆过程，通过不定积分可以根据因变量 $y$ 关于自变量 $x$ 的变化梯度 $\frac{\Delta y}{\Delta x}$，求出因变量与自变量的关系（即原函数）$y &#x3D; F(x)$。以幂函数中的三次函数为例：已知四次函数 $f(x) &#x3D; x^4 + k$（其中 $k$ 为任意常数），则其导函数 $f’(x) &#x3D; 4x^3$ 是一个三次函数。那么对三次函数 $g(x) &#x3D; x^3$ 进行不定积分，其积分函数 $G(x) &#x3D; \int x^3 dx &#x3D; \frac{1}{4}x^4 + k$ 是一个四次函数。其中 $\int$ 为积分符号，$dx$ 表示对 $x$ 进行积分，$k$ 为任意常数（但在物理公式中该常数可能有物理意义）。</p>
-</blockquote>
-<p><strong>解:</strong> 对$\tau(\phi)$ 采用小角近似（题目里用的是$\Delta$，但考虑到科学性，应该用$\part$）：<br>$$<br>\frac{\Delta u}{\Delta z} &#x3D; \frac{\Omega y^2}{aH} &#x3D; \frac{-g}{T_0 \cdot 2a \cdot (y&#x2F;a)} \cdot \frac{\Delta T}{\Delta y} &#x3D; - \frac{ag}{yT_0 \cdot 2\Omega} \cdot \frac{\Delta T}{\Delta y}… \text{(2分)}<br>$$</p>
-<p>$$<br>\frac{\Delta  T}{\Delta y} &#x3D; \frac{\Omega g^2}{aH} \cdot \frac{yT_0 \cdot 2 \Omega}{ag}<br>&#x3D; - \frac{2\Omega^2 T_0}{a^2 g H} y^3… \text{(4分)}<br>$$</p>
-<p>两边积分：<br>$$<br>T_{M} &#x3D; - \frac{\Omega^2 T_0}{2a^2 g H} y^4 + k… \text{(8分)}<br>$$</p>
-<p>其中 $k&#x3D;T_{M_{0}}$ 表征哈德利环流情况下的赤道温度。…(10分)</p>
-<hr>
-<p>在上一题中，我们顺利地出了哈德利环流简化模型下的地球表面温度沿纬度的分布，这个温度分布可以近似看作是在哈德利环流参与将赤道位置的热量向更高纬度地区运输的作用下，地球达成的平衡温度沿纬度的分布。若地球上没有哈德利环流的存在，地球表面温度沿纬度的分布将完全由不均匀的大阳辐射决定，这种情况下的地球表面温度沿纬度的分布被称为辐射平衡温度 $T_E(\phi) &#x3D; T_0 - \frac{1}{3}\Delta T (3\sin^2 \phi - 1)$，其中 $\Delta T$ 为赤道位置的温度与极地位置的温度的差异，$T_0$ 与热成风关系中的 $T_0$ 一样，为全球平均辐射平衡温度。此处的纬度角 $\phi$ 仍然适用等腰三角形顶角三角函数值的近似。</p>
-<p><strong>W7.</strong> 请根据辐射平衡温度表达式，求出不存在哈德利环流情况下的赤道处的温度 $T_{E_0}$ 的表达式。（2分）</p>
-<p><strong>解:</strong><br>$$<br>T_E(0)&#x3D;T_0+\frac{1}{3}\Delta T… \text{(2分)}<br>$$</p>
-<hr>
-<p>将哈德利环流作用之下的地球表面沿纬度的温度分布 $T_M$ 与没有哈德利环流作用之下的地球表面沿纬度温度分布 $T_E$ 画在一起，图像如题图22所示。我们假设哈德利环流影响范围内的大气和哈德利环流影响范围以外的大气不存在热量交换，且温度与热量成线性关系。</p>
-<p><img src="/./%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%A4%A7%E6%B0%94%E5%8A%A8%E5%8A%9B%E5%AD%A6/fig_Q22.jpg" srcset="/img/loading.gif" lazyload alt="fig_Q22"></p>
-<blockquote>
-<p><strong>题图22</strong> 哈德里环流的温度积分</p>
-</blockquote>
-<p><strong>W8.</strong> 请解释图像中阴影面积以及两函数图像间四个交点a, b, c, d的含义（c, d点之外的虚线部分为温度函数的理论延伸，但实际上由于哈德利环流纬度边界存在西风急流，并非连续变化，虚线部分实际上在二温度函数的定义域之外，并不存在）。(6分)</p>
-<p><strong>解:</strong> 阴影部分表征赤道地区因哈德利环流向高纬输送的热量（2分），满足关系式：<br>$$<br>\int_{y_c}^{y_a} [T(M) - T(E)] y_x \mathrm{d}y + \int_{y_b}^{y_d} [T(M) - T(E)] y_x \mathrm{d}y &#x3D; \int_{y_a}^{y_b} [T(E) + T(M)] y_x \mathrm{d}y<br>$$<br>等号左边表征哈德利环流给高纬方向带来的热量，等号右边表征哈德利环流在赤道带走的热量（2分）。</p>
-<p>左右两极的交点表征哈德利环流的南北界；中间的两个交点表征热量输送态的变化（2分）。</p>
-<hr>
-<p>根据上题的分析，我们实际上知道了哈德利环流的边界位于哪个位置，也知道了 $T_{E_0}$ 与 $T_{M_0}$ 之间的差值本质上反映的就是哈德利环流从赤道附近的热带区域向更高纬度地区输送的热量的多少。</p>
-<p><strong>W9.</strong> 请结合 $T_M$ 与 $T_E$ 关于y的简化表达式，求出哈德利环流边界与赤道的距离Y的表达式，以及 $T_{E_0} - T_{M_0}$ 的表达式。代入下面补充数据，求出Y（单位km，保留5位有效数字）和 $T_{E_0} - T_{M_0}$（单位K，保留两位小数）的具体数值。(15分)</p>
-<blockquote>
-<p><strong>补充知识</strong></p>
-<p>定积分可以精确计算函数图像与x轴所围区域的面积。对于区间 $[a, b]$ 内均在x轴上的函数 $f(x)$，它在该区间与x轴围成的面积可通过定积分 $\int_a^b f(x) dx &#x3D; F(b) - F(a)$ 得到。其中 $F(x)$ 为前面介绍不定积分时提到的原函数，原函数中的常数k在相减的过程抵消。此外，$\int_a^b [f(x) + g(x)] dx &#x3D; \int_a^b f(x) dx + \int_a^b g(x) dx$。</p>
-</blockquote>
-<blockquote>
-<p><strong>补充数据</strong></p>
-<p>地球自转角速度：$\Omega &#x3D; 7.3 \times 10^{-5}$ 弧度&#x2F;s<br>地球半径：$a &#x3D; 6371.4 , \text{km}$<br>对流层厚度：$H &#x3D; 12 , \text{km}$<br>全球平均辐射平衡温度：$T_0 &#x3D; 255 , \text{K}$<br>赤道-极地温度差异：$\Delta T &#x3D; 100 , \text{K}$<br>重力加速度：$g &#x3D; 9.8 , \text{m&#x2F;s}^2$  </p>
-</blockquote>
-<p><strong>解:</strong> 将辐射平衡温度的表达式套用小角近似：<br>$$<br>T_E(\phi) &#x3D; \underbrace{T_{0} + \frac{1}{3}\Delta T}<em>{T</em>{E0}} - \Delta T \cdot \left(\frac{y}{a}\right)^2<br>$$</p>
-<p>$$<br>\implies T_E&#x3D;-\frac{\Delta Ty^2}{a^2}+T_{E0}… \text{(2分)}<br>$$</p>
-<p>$$<br>\because \quad T_{M} &#x3D; - \frac{\Omega^2 T_0}{2a^2 g H} y^4 + T_{M0}<br>$$</p>
-<p>因此边界条件即为$T_E$与$T_M$的联立：<br>$$<br>-\frac{\Delta Ty^2}{a^2}+T_{E0}&#x3D;- \frac{\Omega^2 T_0}{2a^2 g H} y^4 + T_{M0}<br>$$<br>由于净加热为零：<br>$$<br>\int_0^Y T_M \mathrm{d}y &#x3D; \int_0^Y T_E \mathrm{d}y<br>$$<br>左边：<br>$$<br>\begin{align}<br>\int_0^Y T_M(y)  \mathrm{d}y &amp;&#x3D; \int_0^Y \left( T_{M0} - \frac{\Omega^2 T_0}{2 a^2 g H} y^4 \right)  \mathrm{d}y \<br>&amp;&#x3D;  T_{M0} y - \frac{\Omega^2 T_0}{2 a^2 g H} \frac{y^5}{5} \Bigg|<em>0^Y \<br>&amp;&#x3D; T</em>{M0} Y - \frac{\Omega^2 T_0}{10 a^2 g H} Y^5<br>\end{align}<br>$$<br>右边：<br>$$<br>\begin{align}<br>\int_0^Y T_E(y)  \mathrm{d}y &amp;&#x3D; \int_0^Y \left( T_{E0} - \frac{\Delta T}{a^2} y^2 \right)  \mathrm{d}y \<br>&amp;&#x3D;  T_{E0} y - \frac{\Delta T}{a^2} \frac{y^3}{3}\Bigg|<em>0^Y \<br>&amp;&#x3D; T</em>{E0} Y - \frac{\Delta T}{3 a^2} Y^3<br>\end{align}<br>$$<br>回代：<br>$$<br>T_{M0} - \frac{\Omega^2 T_0}{10 a^2 g H} Y^4 &#x3D; T_{E0} - \frac{\Delta T}{3 a^2} Y^2… \text{(6分)}<br>$$<br>联立边界条件和净加热积分：<br>$$<br>\left( T_{M0} - \frac{\Omega^2 T_0}{2 a^2 g H} Y^4 \right) - \left( T_{M0} - \frac{\Omega^2 T_0}{10 a^2 g H} Y^4 \right)<br>   &#x3D; \left( T_{E0} - \frac{\Delta T}{a^2} Y^2 \right) - \left( T_{E0} - \frac{\Delta T}{3 a^2} Y^2 \right)<br>$$</p>
-<p>$$<br>\implies \quad    \frac{\Omega^2 T_0}{a^2 g H} \left( -\frac{4}{10} \right) Y^4 &#x3D; \frac{\Delta T}{a^2} \left( -\frac{2}{3} \right) Y^2<br>$$</p>
-<p>$$<br>i.e. \quad\boxed { Y &#x3D;\sqrt \frac{5 \Delta T g H}{3 \Omega^2 T_0} }… \text{(8分)}<br>$$</p>
-<p>下面求赤道地区的温度差：</p>
-<p>$$<br>T_{E0} - T_{M0} &#x3D; \frac{\Delta T}{a^2} Y^2 - \frac{\Omega^2 T_0}{2 a^2 g H} Y^4… \text{(10分)}<br>$$</p>
-<p>$$<br>Y^2 &#x3D; \frac{5 \Delta T g H}{3 \Omega^2 T_0}, \quad Y^4 &#x3D; \left( \frac{5 \Delta T g H}{3 \Omega^2 T_0} \right)^2<br>$$</p>
-<p>$$<br>T_{E0} - T_{M0} &#x3D; \frac{\Delta T}{a^2} \left( \frac{5 \Delta T g H}{3 \Omega^2 T_0} \right) - \frac{\Omega^2 T_0}{2 a^2 g H} \left( \frac{25 \Delta T^2 g^2 H^2}{9 \Omega^4 T_0^2} \right)<br>$$</p>
-<p>$$<br>T_{E0} - T_{M0} &#x3D; \frac{5 \Delta T^2 g H}{3 a^2 \Omega^2 T_0} - \frac{25 \Delta T^2 g H}{18 a^2 \Omega^2 T_0} &#x3D; \frac{30 \Delta T^2 g H - 25 \Delta T^2 g H}{18 a^2 \Omega^2 T_0}<br>$$<br>即：<br>$$<br>\boxed{T_{E0} - T_{M0} &#x3D; \frac{5 \Delta T^2 g H}{18 a^2 \Omega^2 T_0}}… \text{(13分)}<br>$$<br>带入数据，得 Y≈3797.8 km，$T_{E0} - T_{M0}$ ≈ 5.92 K。…（15分）</p>
 <h2 id="真题溯源"><a href="#真题溯源" class="headerlink" title="真题溯源"></a>真题溯源</h2><p>本组题目改编自 James, I.N. 在1994年出版的 <em>Introduction to Circulating Atmospheres</em> 一书的80-89页。作为大气动力学的经典教材，该部分讨论了哈德利环流的物理机制、Held-Hou模型和辐射变率。该教材在国内的许多大气科学系作为参考书使用。</p>
 <p><img src="/./%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%A4%A7%E6%B0%94%E5%8A%A8%E5%8A%9B%E5%AD%A6/circulation.png" srcset="/img/loading.gif" lazyload alt="circulation"></p>
 <blockquote>
