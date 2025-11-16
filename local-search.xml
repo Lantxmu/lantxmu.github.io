@@ -61,19 +61,6 @@
   
   
   <entry>
-    <title>测试文档</title>
-    <link href="/%E6%B5%8B%E8%AF%95%E6%96%87%E6%A1%A3/"/>
-    <url>/%E6%B5%8B%E8%AF%95%E6%96%87%E6%A1%A3/</url>
-    
-    <content type="html"><![CDATA[<p>$$<br>\begin{align}<br>\int_0^Y T_M(y)  \mathrm{d}y &amp;&#x3D; \int_0^Y \left( T_{M0} - \frac{\Omega^2 T_0}{2 a^2 g H} y^4 \right)  \mathrm{d}y \<br>&amp;&#x3D;  T_{M0} y - \frac{\Omega^2 T_0}{2 a^2 g H} \frac{y^5}{5} \Bigg|<em>0^Y \<br>&amp;&#x3D; T</em>{M0} Y - \frac{\Omega^2 T_0}{10 a^2 g H} Y^5<br>\end{align}\tag{2.21}<br>$$</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>第二章 　综合问题一：大气动力学</title>
     <link href="/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%A4%A7%E6%B0%94%E5%8A%A8%E5%8A%9B%E5%AD%A6/"/>
     <url>/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%A4%A7%E6%B0%94%E5%8A%A8%E5%8A%9B%E5%AD%A6/</url>
